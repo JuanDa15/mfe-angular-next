@@ -16,13 +16,19 @@ export function UserList() {
 
   const search = (username: string) => {
     setLoading(true);
-    getUsers(username).then((data) => {
-      if (data.items) {
-        setUsers(data.items);
-      }
-      setLoading(false);
-      console.log(data);
-    });
+    getUsers(username)
+      .then((data) => {
+        if (data.items) {
+          setUsers(data.items);
+        }
+        setLoading(false);
+        console.log(data);
+      })
+      .catch((error) => {
+        window.alert(
+          `${error.status} - ${error.error.message}` || 'Ha ocurrido un error'
+        );
+      });
   };
 
   const handleUserClick = (user: UserList) => {
