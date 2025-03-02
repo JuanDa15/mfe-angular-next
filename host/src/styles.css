@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* You can add global styles to this file, and also import other style files */
+:root {
+  --background-color: #ffffff;
+  --text-color: #202124;
+  --secondary-background-color: #f1f3f4;
+  --secondary-text-color: #5f6368;
+  --primary-color: #1a73e8;
+  --secondary-color: #e8f0fe;
+  --accent-color: #34a853;
+  --border-color: #dadce0;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background-color: #202124;
+    --text-color: #e8eaed;
+    --primary-color: #6aa1fa;
+    --secondary-color: #3c4043;
+    --accent-color: #34a853;
+    --border-color: #5f6368;
+    --secondary-background-color: #303134;
+    --secondary-text-color: #bdc1c6;
+  }
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  color: var(--text-color);
+  background: var(--background-color);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+}

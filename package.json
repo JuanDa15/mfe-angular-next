@@ -1,0 +1,19 @@
+{
+  "name": "github-mfe",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "install": "npm run install:host && npm run install:userList && npm run install:userDetail && npm run install:userFollowers",
+    "install:host": "cd host && npm install -E && cd..",
+    "install:userList": "cd user-list && npm install -E && cd..",
+    "install:userDetail": "cd user-detail && npm install -E && cd..",
+    "install:userFollowers": "cd user-followers && npm install -E && cd..",
+    "execute:userList": "cd user-list && npm run build-styles && npm run dev && cd..",
+    "execute:userDetail": "cd user-detail && npm run run:styles && npm run run:all && cd..",
+    "execute:userFollowers": "cd user-followers && npm run run:styles && npm run run:all && cd..",
+    "execute:host": "cd host && npm run run:all && cd.."
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

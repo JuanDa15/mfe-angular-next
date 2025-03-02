@@ -1,0 +1,26 @@
+<h1 class="text-4xl font-medium my-2">
+  Seguidores de {{ username | titlecase }}
+</h1>
+
+@if (followersServ.followers$ | async; as followers) {
+<ng-container>
+  @if(followers.length === 0) {
+  <div
+    class="bg-blue-100 border border-blue-400 text-blue-700 px-4 py-3 rounded relative mt-4"
+    role="alert"
+  >
+    <span class="block sm:inline">No se encontraron seguidores.</span>
+  </div>
+  } @else {
+  <ul class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 mt-6">
+    @for (follower of followers; track follower.id) {
+    <li>
+      <user-list-card [user]="follower" />
+    </li>
+    }
+  </ul>
+  }
+</ng-container>
+} @else {
+<app-spinner />
+}

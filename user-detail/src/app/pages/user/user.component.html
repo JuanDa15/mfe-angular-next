@@ -1,0 +1,113 @@
+@if (userServ.user | async; as user) {
+<div class="flex flex-col md:flex-row gap-2 items-center w-full p-4">
+  <img
+    [src]="user.avatar_url"
+    width="256"
+    height="256"
+    [alt]="user.login"
+    class="w-64 h-64 aspect-square rounded-md border border-boder-color"
+  />
+  <div class="flex flex-col w-full p-4">
+    <div class="mb-5">
+      <h1 class="text-4xl font-medium text-primary-text">
+        {{ user.login | titlecase }}
+      </h1>
+      <h4 class="text-base opacity-80">{{ user.name }}</h4>
+    </div>
+    <p class="text-primary-text text-base">{{ user.bio }}</p>
+
+    <ul class="flex flex-col gap-2 mt-5 bg-secondary-background p-4 rounded-md">
+      <li class="flex flex-row justify-start gap-4">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <path
+            d="M18.364 4.636a9 9 0 0 1 .203 12.519l-.203 .21l-4.243 4.242a3 3 0 0 1 -4.097 .135l-.144 -.135l-4.244 -4.243a9 9 0 0 1 12.728 -12.728zm-6.364 3.364a3 3 0 1 0 0 6a3 3 0 0 0 0 -6z"
+          />
+        </svg>
+        <span>{{ user.location }}</span>
+      </li>
+      @if (user.blog) {
+      <li class="flex flex-row justify-start gap-4">
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <path d="M19.5 7a9 9 0 0 0 -7.5 -4a8.991 8.991 0 0 0 -7.484 4" />
+          <path d="M11.5 3a16.989 16.989 0 0 0 -1.826 4" />
+          <path d="M12.5 3a16.989 16.989 0 0 1 1.828 4" />
+          <path d="M19.5 17a9 9 0 0 1 -7.5 4a8.991 8.991 0 0 1 -7.484 -4" />
+          <path d="M11.5 21a16.989 16.989 0 0 1 -1.826 -4" />
+          <path d="M12.5 21a16.989 16.989 0 0 0 1.828 -4" />
+          <path d="M2 10l1 4l1.5 -4l1.5 4l1 -4" />
+          <path d="M17 10l1 4l1.5 -4l1.5 4l1 -4" />
+          <path d="M9.5 10l1 4l1.5 -4l1.5 4l1 -4" />
+        </svg>
+        <a
+          class="text-accent hover:underline"
+          [href]="user.blog"
+          referrerpolicy="no_referrer"
+          target="_blank"
+          >{{ user.blog }}</a
+        >
+      </li>
+      }
+      <li class="flex flex-row justify-start gap-4">
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <path d="M19 4v16h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12z" />
+          <path d="M19 16h-12a2 2 0 0 0 -2 2" />
+          <path d="M9 8h6" />
+        </svg>
+        <span>{{ user.public_repos | i18nPlural : pluralMap }}</span>
+      </li>
+      <li class="flex flex-row justify-between">
+        <div class="flex flex-row gap-4">
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M9 7m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" />
+            <path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+            <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+            <path d="M21 21v-2a4 4 0 0 0 -3 -3.85" />
+          </svg>
+          <span>{{ user.followers | followers }}</span>
+        </div>
+
+        <Button
+          type="button"
+          btnStyle="primary"
+          routerLink="/seguidores/{{ user.login }}"
+        >
+          Ver Seguidores
+        </Button>
+      </li>
+    </ul>
+  </div>
+</div>
+} @else {
+<app-spinner />
+}
